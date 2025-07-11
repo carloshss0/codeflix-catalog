@@ -17,7 +17,7 @@ A python microservice for managing catalog, following clean architecture princip
 
 ## Getting Started
 
-1. **Install dependencies**  
+<!-- 1. **Install dependencies**  
    ```bash
    pip install -r requirements.txt
    ```
@@ -25,4 +25,4 @@ A python microservice for managing catalog, following clean architecture princip
 2. **Run tests**  
    ```bash
    pytest src/core/category/tests/
-   ```
+   ``` -->
