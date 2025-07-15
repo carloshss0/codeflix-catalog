@@ -33,3 +33,27 @@ class TestMemoryCategoryRepository:
         retrieved_category = repository.get_by_id(category_id)
 
         assert retrieved_category is None
+
+    def test_can_delete_category_by_id(self):
+        category = Category(
+            name="Test Category",
+            description="This is a test category",
+            is_activate=True
+        )
+        repository = InMemoryCategoryRepository(categories=[category])
+
+        repository.delete(category.id)
+        assert len(repository.categories) == 0
+
+    def test_delete_category_by_id_does_nothing_if_not_found(self):
+        category = Category(
+            name="Test Category",
+            description="This is a test category",
+            is_activate=True
+        )
+        repository = InMemoryCategoryRepository(categories=[category])
+
+        non_existent_id = uuid.uuid4()
+        repository.delete(non_existent_id)
+        assert len(repository.categories) == 1
+        assert repository.categories[0] == category
