@@ -23,3 +23,10 @@ class InMemoryCategoryRepository(CategoryRepository):
                 return
         return None
     
+    def update(self, category: Category) -> None:
+        old_category = self.get_by_id(category.id)
+        if old_category:
+            self.categories.remove(old_category)
+            self.categories.append(category)    
+        
+    
