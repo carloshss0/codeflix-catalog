@@ -22,9 +22,9 @@ class TestDeleteCategory:
             is_activate=True,
         )
 
-        repository = InMemoryCategoryRepository(
-            categories=[category_movie, category_documentary]
-        )
+        repository = InMemoryCategoryRepository()
+        repository.save(category_movie)
+        repository.save(category_documentary)
         use_case = DeleteCategory(repository=repository)
         
         input = DeleteCategoryInput(
@@ -36,12 +36,8 @@ class TestDeleteCategory:
         assert repository.get_by_id(input.id) is None
 
     def test_delete_category_when_it_does_not_exist(self):
-        category_movie = Category(
-            name = "Movie",
-            description="Category for movies",
-            is_activate=True,
-        )
-        repository = InMemoryCategoryRepository(categories=[category_movie])
+
+        repository = InMemoryCategoryRepository()
         use_case = DeleteCategory(repository=repository)
         input = DeleteCategoryInput(
             id = uuid.uuid4(),

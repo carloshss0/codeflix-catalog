@@ -22,9 +22,10 @@ class TestGetCategory:
             is_activate=True,
         )
 
-        repository = InMemoryCategoryRepository(
-            categories=[category_movie, category_documentary]
-        )
+        repository = InMemoryCategoryRepository()
+        repository.save(category_movie)
+        repository.save(category_documentary)
+        
         use_case = GetCategory(repository=repository)
         
         input = GetCategoryInput(
