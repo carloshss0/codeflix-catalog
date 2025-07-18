@@ -12,6 +12,10 @@ A python microservice for managing catalog, following clean architecture princip
 ## Features
 
 - Create categories.
+- Get categories.
+- Update categories.
+- Delete categories.
+- List categories.
 - In-memory repository for testing and development.
 - Separation of domain, application, and infrastructure layers.
 
