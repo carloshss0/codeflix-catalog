@@ -57,3 +57,59 @@ class TestMemoryCategoryRepository:
         repository.delete(non_existent_id)
         assert len(repository.categories) == 1
         assert repository.categories[0] == category
+
+    def test_can_update_category(self):
+        category = Category(
+            name="Test Category",
+            description="This is a test category",
+            is_activate=True
+        )
+        repository = InMemoryCategoryRepository(categories=[category])
+
+        updated_category = Category(
+            id=category.id,
+            name="Updated Category",
+            description="This is an updated category",
+            is_activate=False
+        )
+        repository.update(updated_category)
+
+        assert len(repository.categories) == 1
+        assert repository.categories[0] == updated_category
+
+    def test_update_category_does_nothing_if_not_found(self):
+        category = Category(
+            name="Test Category",
+            description="This is a test category",
+            is_activate=True
+        )
+        repository = InMemoryCategoryRepository(categories=[category])
+
+        non_existent_category = Category(
+            id=uuid.uuid4(),
+            name="Non-existent Category",
+            description="This category does not exist",
+            is_activate=False
+        )
+        repository.update(non_existent_category)
+
+        assert len(repository.categories) == 1
+        assert repository.categories[0] == category
+
+    def test_can_list_categories(self):
+        category1 = Category(
+            name="Category 1",
+            description="First category",
+            is_activate=True
+        )
+        category2 = Category(
+            name="Category 2",
+            description="Second category",
+            is_activate=False
+        )
+        repository = InMemoryCategoryRepository(categories=[category1, category2])
+
+        categories = repository.list()
+        assert len(categories) == 2
+        assert categories[0] == category1
+        assert categories[1] == category2
