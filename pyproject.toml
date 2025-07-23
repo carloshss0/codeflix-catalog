@@ -1,2 +1,4 @@
 [tool.pytest.ini_options]
-pythonpath = "."
+pythonpath = "src"
+DJANGO_SETTINGS_MODULE = "django_project.settings"
+python_files = "tests.py test_*.py *_tests.py *_test.py"
