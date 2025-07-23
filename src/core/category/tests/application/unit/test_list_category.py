@@ -43,7 +43,7 @@ class TestListCategory:
                     id=category.id,
                     name=category.name,
                     description=category.description,
-                    is_active=category.is_activate
+                    is_activate=category.is_activate
                 ) for category in list_category
             ]
         )
