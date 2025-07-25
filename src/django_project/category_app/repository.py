@@ -5,8 +5,8 @@ from django_project.category_app.models import Category as CategoryModel
 
 
 class DjangoORMCategoryRepository(CategoryRepository):
-    def __init__(self, category_model: CategoryModel):
-        self.category_model = category_model
+    def __init__(self, category_model: CategoryModel | None = None):
+        self.category_model = category_model or CategoryModel
 
     def save(self, category: Category) -> None:
         self.category_model.objects.create(
