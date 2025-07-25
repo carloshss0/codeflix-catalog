@@ -38,7 +38,7 @@ class TestGetCategory:
             id=category_movie.id,
             name="Movie",
             description="Category for movies",
-            is_active=True,
+            is_activate=True,
         )
 
     def test_get_category_when_it_does_not_exist(self):
