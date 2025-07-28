@@ -17,16 +17,34 @@ A python microservice for managing catalog, following clean architecture princip
 - Delete categories.
 - List categories.
 - In-memory repository for testing and development.
+- SQL lite repository for testing and development (Django ORM).
 - Separation of domain, application, and infrastructure layers.
+- API endpoints: GET (specific category), GET (all), CREATE, PUT (update all fields), PATCH (update specifics fields), DELETE
 
 ## Getting Started
 
-<!-- 1. **Install dependencies**  
+1. **Create virtual env**
+   ```
+   python3 -m venv venv (macos | linux)
+   python -m venv venv (Windows)
+   ````
+
+2. **Activate virtual env**
+   ```
+   source venv/bin/activate (macos | linux)
+   .\venv/Scripts\activate (Windows)
+
+
+3. **Install dependencies**  
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Run tests**  
+4. **Run tests**  
    ```bash
    pytest src/core/category/tests/
-   ``` -->
+   ```
+5. **Start server**
+   ```bash
+   python manage.py runserver
+   ```
