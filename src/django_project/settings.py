@@ -53,6 +53,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_project.urls'
 
+REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
