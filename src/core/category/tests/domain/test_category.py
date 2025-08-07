@@ -24,12 +24,12 @@ class TestCategory:
         category = Category(name="Serie")
         assert category.name == "Serie"
         assert category.description == ""
-        assert category.is_activate is True
+        assert category.is_active is True
 
 
     def test_category_is_created_as_active_by_default(self):
         category = Category(name="Documentary")
-        assert category.is_activate is True
+        assert category.is_active is True
     
     def test_category_is_created_with_provided_values(self):
         category_id = uuid.uuid4()
@@ -37,12 +37,12 @@ class TestCategory:
             id=category_id,
             name="Comedy",
             description="French Comedy",
-            is_activate=False     
+            is_active=False     
         )
         assert category.id == category_id
         assert category.name == "Comedy"
         assert category.description == "French Comedy"
-        assert category.is_activate is False
+        assert category.is_active is False
 
     def test_str_method_for_category(self):
         category_id = uuid.uuid4()
@@ -50,10 +50,10 @@ class TestCategory:
             id=category_id,
             name="Comedy",
             description="French Comedy",
-            is_activate=False     
+            is_active=False     
         )
 
-        string_str = f"{category.id} - {category.name} - {category.description} - {category.is_activate}"
+        string_str = f"{category.id} - {category.name} - {category.description} - {category.is_active}"
         assert str(category) == string_str
 
     def test_repr_method_for_category(self):
@@ -62,10 +62,10 @@ class TestCategory:
             id=category_id,
             name="Comedy",
             description="French Comedy",
-            is_activate=False     
+            is_active=False     
         )
 
-        string_str = f"<Category {category.id} - {category.name} - {category.description} - {category.is_activate}"
+        string_str = f"<Category {category.id} - {category.name} - {category.description} - {category.is_active}"
         assert repr(category) == string_str
 
 
@@ -90,14 +90,14 @@ class TestUpdateCategory:
 
 class TestActivateCategory:
     def test_activate_category(self):
-        category = Category(name="Film", description="Adventure Film", is_activate=False)
+        category = Category(name="Film", description="Adventure Film", is_active=False)
         category.activate()
-        assert category.is_activate is True
+        assert category.is_active is True
 
     def test_deactivate_category(self):
-        category = Category(name="Film", description="Adventure Film", is_activate=True)
+        category = Category(name="Film", description="Adventure Film", is_active=True)
         category.deactivate()
-        assert category.is_activate is False
+        assert category.is_active is False
 
 
 class TestEqualCategory:

@@ -9,7 +9,7 @@ from src.core.category.domain.category import Category
 class CreateCategoryInput:
     name: str
     description: str = ""
-    is_activate: bool = True
+    is_active: bool = True
 
 @dataclass
 class CreateCategoryOutput:
@@ -25,7 +25,7 @@ class CreateCategory:
             category = Category(
                 name=input.name,
                 description=input.description,
-                is_activate=input.is_activate
+                is_active=input.is_active
             )
         except ValueError as err:
             raise InvalidCategoryData(f"Invalid category data: {err}")

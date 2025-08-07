@@ -23,12 +23,12 @@ class TestListCategory:
             Category(
                 name="Movie",
                 description="Category for movies",
-                is_activate=True
+                is_active=True
             ),
             Category(
                 name="Documentary",
                 description="Category for documentaries",
-                is_activate=True
+                is_active=True
             )
         ]
 
@@ -43,7 +43,7 @@ class TestListCategory:
                     id=category.id,
                     name=category.name,
                     description=category.description,
-                    is_activate=category.is_activate
+                    is_active=category.is_active
                 ) for category in list_category
             ]
         )

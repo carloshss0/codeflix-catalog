@@ -6,7 +6,7 @@ from uuid import UUID
 class Category:
     name: str
     description: str = ""
-    is_activate: bool = True
+    is_active: bool = True
     id: UUID = field(default_factory= uuid.uuid4)
 
     def __post_init__(self):
@@ -20,10 +20,10 @@ class Category:
             raise ValueError("name cannot be empty")
 
     def __str__(self):
-        return f"{self.id} - {self.name} - {self.description} - {self.is_activate}"
+        return f"{self.id} - {self.name} - {self.description} - {self.is_active}"
     
     def __repr__(self):
-        return f"<Category {self.id} - {self.name} - {self.description} - {self.is_activate}"
+        return f"<Category {self.id} - {self.name} - {self.description} - {self.is_active}"
     
     def __eq__(self, other):
         if not isinstance(other, Category):
@@ -38,11 +38,11 @@ class Category:
         self.validate()
 
     def activate(self):
-        self.is_activate = True
+        self.is_active = True
 
         self.validate()
     
     def deactivate(self):
-        self.is_activate = False
+        self.is_active = False
         
         self.validate()

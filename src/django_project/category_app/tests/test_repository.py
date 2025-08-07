@@ -13,7 +13,7 @@ class TestSave:
             id=UUID("12345678-1234-5678-1234-567812345678"),
             name="Test Category",
             description="This is a test category",
-            is_activate=True
+            is_active=True
         )
         repository = DjangoORMCategoryRepository(CategoryModel)
         assert CategoryModel.objects.count() == 0
@@ -23,7 +23,7 @@ class TestSave:
         assert category_db.id == category.id
         assert category_db.name == category.name
         assert category_db.description == category.description
-        assert category_db.is_activate == category.is_activate
+        assert category_db.is_active == category.is_active
         assert CategoryModel.objects.count() == 1
     
     def test_get_category_by_id(self):
@@ -31,7 +31,7 @@ class TestSave:
             id=UUID("12345678-1234-5678-1234-567812345678"),
             name="Test Category",
             description="This is a test category",
-            is_activate=True
+            is_active=True
         )
         repository = DjangoORMCategoryRepository(CategoryModel)
         repository.save(category)
@@ -41,14 +41,14 @@ class TestSave:
         assert retrieved_category.id == category.id
         assert retrieved_category.name == category.name
         assert retrieved_category.description == category.description
-        assert retrieved_category.is_activate == category.is_activate
+        assert retrieved_category.is_active == category.is_active
 
     def test_delete_category(self):
         category = Category(
             id=UUID("12345678-1234-5678-1234-567812345678"),
             name="Test Category",
             description="This is a test category",
-            is_activate=True
+            is_active=True
         )
         repository = DjangoORMCategoryRepository(CategoryModel)
         repository.save(category)
@@ -63,13 +63,13 @@ class TestSave:
             id=UUID("12345678-1234-5678-1234-567812345678"),
             name="Test Category 1",
             description="This is a test category 1",
-            is_activate=True
+            is_active=True
         )
         category2 = Category(
             id=UUID("87654321-4321-6789-4321-678987654321"),
             name="Test Category 2",
             description="This is a test category 2",
-            is_activate=False
+            is_active=False
         )
         repository = DjangoORMCategoryRepository(CategoryModel)
         repository.save(category1)
@@ -85,7 +85,7 @@ class TestSave:
             id=UUID("12345678-1234-5678-1234-567812345678"),
             name="Test Category",
             description="This is a test category",
-            is_activate=True
+            is_active=True
         )
         repository = DjangoORMCategoryRepository(CategoryModel)
         repository.save(category)
@@ -96,4 +96,4 @@ class TestSave:
         assert updated_category.id == category.id
         assert updated_category.name == "Updated Category"
         assert updated_category.description == "Updated description"
-        assert updated_category.is_activate == category.is_activate
+        assert updated_category.is_active == category.is_active

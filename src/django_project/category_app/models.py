@@ -6,7 +6,7 @@ class Category(models.Model):
     id = models.UUIDField(primary_key=True, default= uuid4)
     name = models.CharField(max_length=255)
     description = models.TextField()
-    is_activate = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'category'

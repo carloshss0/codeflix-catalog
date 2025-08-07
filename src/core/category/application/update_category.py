@@ -9,7 +9,7 @@ class UpdateCategoryInput:
     id: UUID
     name: str | None = None
     description: str | None = None
-    is_activate: bool | None = None
+    is_active: bool | None = None
     
 
 class UpdateCategory:
@@ -23,7 +23,7 @@ class UpdateCategory:
 
         current_name = category.name
         current_description = category.description
-        current_is_activate = category.is_activate
+        current_is_active = category.is_active
 
     
         if input.name is not None:
@@ -32,17 +32,17 @@ class UpdateCategory:
         if input.description is not None:
             current_description = input.description
 
-        if input.is_activate is not None:
-            current_is_activate = input.is_activate
+        if input.is_active is not None:
+            current_is_active = input.is_active
 
         category.update_category(
             name=current_name,
             description=current_description,
         )
 
-        if current_is_activate is True:
+        if current_is_active is True:
             category.activate()
-        elif current_is_activate is False:
+        elif current_is_active is False:
             category.deactivate()
 
         self.repository.update(category)

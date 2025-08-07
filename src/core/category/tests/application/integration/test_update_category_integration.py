@@ -9,7 +9,7 @@ class TestUpdateCategory:
         category_movie = Category(
                 name = "Movie",
                 description="Category for movies",
-                is_activate=True,
+                is_active=True,
             )
 
         repository = InMemoryCategoryRepository()
@@ -27,14 +27,14 @@ class TestUpdateCategory:
 
         assert category_movie.name == "Updated Movie"
         assert category_movie.description == "Updated description for movies"
-        assert category_movie.is_activate is True
+        assert category_movie.is_active is True
         assert len(repository.categories) == 1
 
     def test_can_update_category_activation_status(self):
         category_movie = Category(
             name = "Movie",
             description="Category for movies",
-            is_activate=True,
+            is_active=True,
         )
 
         repository = InMemoryCategoryRepository()
@@ -43,11 +43,11 @@ class TestUpdateCategory:
 
         input = UpdateCategoryInput(
             id=category_movie.id,
-            is_activate=False,
+            is_active=False,
         )
 
         use_case.execute(input)
         assert category_movie.name == "Movie"
         assert category_movie.description == "Category for movies"
-        assert category_movie.is_activate is False
+        assert category_movie.is_active is False
         assert len(repository.categories) == 1

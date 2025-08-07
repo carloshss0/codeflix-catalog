@@ -9,7 +9,7 @@ class TestUpdateCategory:
         category = Category(
             name="Test Category",
             description="This is a test category",
-            is_activate=True)
+            is_active=True)
         
         mock_repository = create_autospec(CategoryRepository)
         mock_repository.get_by_id.return_value = category
@@ -31,7 +31,7 @@ class TestUpdateCategory:
         category = Category(
         name="Test Category",
         description="This is a test category",
-        is_activate=True)
+        is_active=True)
         
         mock_repository = create_autospec(CategoryRepository)
         mock_repository.get_by_id.return_value = category
@@ -52,7 +52,7 @@ class TestUpdateCategory:
         category = Category(
         name="Test Category",
         description="This is a test category",
-        is_activate=True)
+        is_active=True)
         
         mock_repository = create_autospec(CategoryRepository)
         mock_repository.get_by_id.return_value = category
@@ -60,13 +60,13 @@ class TestUpdateCategory:
         use_case = UpdateCategory(repository = mock_repository)
         input = UpdateCategoryInput(
             id=category.id,
-            is_activate= False,
+            is_active= False,
         )
         use_case.execute(input)
 
         assert category.name == "Test Category"
         assert category.description == "This is a test category"
-        assert category.is_activate is False
+        assert category.is_active is False
         assert mock_repository.get_by_id.called is True
         mock_repository.update.assert_called_once_with(category)
 
@@ -74,7 +74,7 @@ class TestUpdateCategory:
         category = Category(
         name="Test Category",
         description="This is a test category",
-        is_activate=False)
+        is_active=False)
         
         mock_repository = create_autospec(CategoryRepository)
         mock_repository.get_by_id.return_value = category
@@ -82,12 +82,12 @@ class TestUpdateCategory:
         use_case = UpdateCategory(repository = mock_repository)
         input = UpdateCategoryInput(
             id=category.id,
-            is_activate= True,
+            is_active= True,
         )
         use_case.execute(input)
 
         assert category.name == "Test Category"
         assert category.description == "This is a test category"
-        assert category.is_activate is True
+        assert category.is_active is True
         assert mock_repository.get_by_id.called is True
         mock_repository.update.assert_called_once_with(category)

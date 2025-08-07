@@ -13,13 +13,13 @@ class TestGetCategory:
         category_movie = Category(
             name = "Movie",
             description="Category for movies",
-            is_activate=True,
+            is_active=True,
         )
 
         category_documentary = Category(
             name = "Documentary",
             description="Category for documentaries",
-            is_activate=True,
+            is_active=True,
         )
 
         repository = InMemoryCategoryRepository()
@@ -38,7 +38,7 @@ class TestGetCategory:
             id=category_movie.id,
             name="Movie",
             description="Category for movies",
-            is_activate=True,
+            is_active=True,
         )
 
     def test_get_category_when_it_does_not_exist(self):

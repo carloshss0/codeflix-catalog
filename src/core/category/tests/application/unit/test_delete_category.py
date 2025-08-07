@@ -13,7 +13,7 @@ class TestDeleteCategory:
         category = Category(
             name = "Test Category",
             description = "Test Description",
-            is_activate = True,
+            is_active = True,
         )
         mock_repository = create_autospec(CategoryRepository)
         mock_repository.get_by_id.return_value = category

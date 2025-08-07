@@ -15,7 +15,7 @@ class TestCreateCategory:
         input = CreateCategoryInput(
             name="Test Category",
             description="This is a test category",
-            is_activate=True  # Default
+            is_active=True  # Default
         )
 
         output = use_case.execute(input)

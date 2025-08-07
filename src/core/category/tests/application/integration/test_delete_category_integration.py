@@ -13,13 +13,13 @@ class TestDeleteCategory:
         category_movie = Category(
             name = "Movie",
             description="Category for movies",
-            is_activate=True,
+            is_active=True,
         )
 
         category_documentary = Category(
             name = "Documentary",
             description="Category for documentaries",
-            is_activate=True,
+            is_active=True,
         )
 
         repository = InMemoryCategoryRepository()

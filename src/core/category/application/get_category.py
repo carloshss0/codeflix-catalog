@@ -14,7 +14,7 @@ class GetCategoryOutput:
     id: UUID
     name: str
     description: str
-    is_activate: bool
+    is_active: bool
 
 
 class GetCategory:
@@ -30,5 +30,5 @@ class GetCategory:
             id=category.id,
             name=category.name,
             description=category.description,
-            is_activate=category.is_activate
+            is_active=category.is_active
         )

@@ -13,7 +13,7 @@ class DjangoORMCategoryRepository(CategoryRepository):
             id=category.id,
             name=category.name,
             description=category.description,
-            is_activate=category.is_activate
+            is_active=category.is_active
         )
 
     def get_by_id(self, id: UUID) -> Category | None:
@@ -23,7 +23,7 @@ class DjangoORMCategoryRepository(CategoryRepository):
                 id=category_model.id,
                 name=category_model.name,
                 description=category_model.description,
-                is_activate=category_model.is_activate
+                is_active=category_model.is_active
             )
         except self.category_model.DoesNotExist:
             return None
@@ -42,7 +42,7 @@ class DjangoORMCategoryRepository(CategoryRepository):
                 id=category.id,
                 name=category.name,
                 description=category.description,
-                is_activate=category.is_activate
+                is_active=category.is_active
             ) for category in categories
         ]
     
@@ -52,13 +52,13 @@ class DjangoORMCategoryRepository(CategoryRepository):
             category_model = self.category_model.objects.get(id=category_id)
             category_model.name = category.name
             category_model.description = category.description
-            category_model.is_activate = category.is_activate
+            category_model.is_active = category.is_active
             category_model.save()
             return Category(
                 id=category_model.id,
                 name=category_model.name,
                 description=category_model.description,
-                is_activate=category_model.is_activate
+                is_active=category_model.is_active
             )
         except self.category_model.DoesNotExist:
             return None

@@ -11,7 +11,7 @@ def category_movie():
     return Category(
         name="Movie",
         description="Category for movies",
-        is_activate=True
+        is_active=True
     )
 
 @pytest.fixture
@@ -19,7 +19,7 @@ def category_documentary():
     return Category(
         name="Series",
         description="Category for series",
-        is_activate=True
+        is_active=True
     )
 
 @pytest.fixture
@@ -49,13 +49,13 @@ class TestListAPI:
                 "id": str(category_movie.id),
                 "name": "Movie",
                 "description": "Category for movies",
-                "is_activate": True,
+                "is_active": True,
             },
             {
                 "id": str(category_documentary.id),
                 "name": "Series",
                 "description": "Category for series",
-                "is_activate": True,
+                "is_active": True,
             }
         ]}
         assert response.status_code == 200
@@ -86,7 +86,7 @@ class TestRetrieveAPI:
                 "id": str(category_movie.id),
                 "name": "Movie",
                 "description": "Category for movies",
-                "is_activate": True,
+                "is_active": True,
             }
         }
         assert response.status_code == 200
@@ -111,7 +111,7 @@ class TestCreateAPI:
         data = {
             "name": "",
             "description": "A category without a name",
-            "is_activate": True
+            "is_active": True
         }
         response = APIClient().post(url, data)
         assert response.status_code == 400
@@ -124,7 +124,7 @@ class TestCreateAPI:
         data = {
             "name": "New Category",
             "description": "A new category for testing",
-            "is_activate": True
+            "is_active": True
         }
         response = APIClient().post(url, data)
         
@@ -136,7 +136,7 @@ class TestCreateAPI:
             id=created_category_id,
             name="New Category",
             description="A new category for testing",
-            is_activate=True
+            is_active=True
         )
 
         
@@ -149,7 +149,7 @@ class TestUpdateAPI:
         data = {
             "name": "",
             "description": "An updated category without a name",
-            "is_activate": True
+            "is_active": True
         }
         response = APIClient().put(url, data)
         assert response.status_code == 400
@@ -167,7 +167,7 @@ class TestUpdateAPI:
             "id": str(category_movie.id),
             "name": "Updated Category",
             "description": "An updated category for testing",
-            "is_activate": True
+            "is_active": True
         }
         response = APIClient().put(url, data)
         assert response.status_code == 204
@@ -180,7 +180,7 @@ class TestUpdateAPI:
             id=category_movie.id,
             name="Updated Category",
             description="An updated category for testing",
-            is_activate=True
+            is_active=True
         )
 
         
@@ -193,7 +193,7 @@ class TestUpdateAPI:
             "id": non_existent_id,
             "name": "Non Existent Category",
             "description": "This category does not exist",
-            "is_activate": True
+            "is_active": True
         }
         
         response = APIClient().put(url, data)
@@ -284,7 +284,7 @@ class TestPartialAPI:
         assert updated_category_repository is not None
         assert updated_category_repository.description == "Partially Updated Description"
 
-    def test_partial_update_category_is_activate(
+    def test_partial_update_category_is_active(
             self,
             category_movie: Category,
             category_repository: DjangoORMCategoryRepository
@@ -294,7 +294,7 @@ class TestPartialAPI:
 
         url = f'/api/categories/{category_movie.id}/'
         data = {
-            "is_activate": False
+            "is_active": False
         }
         response = APIClient().patch(url, data)
         
@@ -303,7 +303,7 @@ class TestPartialAPI:
         updated_category_repository = repository.get_by_id(category_movie.id)
         
         assert updated_category_repository is not None
-        assert updated_category_repository.is_activate is False
+        assert updated_category_repository.is_active is False
 
     
     def test_partial_update_non_existent_category(self):

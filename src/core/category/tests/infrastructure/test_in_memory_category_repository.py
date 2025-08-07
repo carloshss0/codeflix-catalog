@@ -9,7 +9,7 @@ class TestMemoryCategoryRepository:
         category = Category(
             name="Test Category",
             description="This is a test category",
-            is_activate=True
+            is_active=True
         )
 
         repository.save(category)
@@ -20,7 +20,7 @@ class TestMemoryCategoryRepository:
         category = Category(
             name="Test Category",
             description="This is a test category",
-            is_activate=True
+            is_active=True
         )
         repository = InMemoryCategoryRepository(categories=[category])
 
@@ -38,7 +38,7 @@ class TestMemoryCategoryRepository:
         category = Category(
             name="Test Category",
             description="This is a test category",
-            is_activate=True
+            is_active=True
         )
         repository = InMemoryCategoryRepository(categories=[category])
 
@@ -49,7 +49,7 @@ class TestMemoryCategoryRepository:
         category = Category(
             name="Test Category",
             description="This is a test category",
-            is_activate=True
+            is_active=True
         )
         repository = InMemoryCategoryRepository(categories=[category])
 
@@ -62,7 +62,7 @@ class TestMemoryCategoryRepository:
         category = Category(
             name="Test Category",
             description="This is a test category",
-            is_activate=True
+            is_active=True
         )
         repository = InMemoryCategoryRepository(categories=[category])
 
@@ -70,7 +70,7 @@ class TestMemoryCategoryRepository:
             id=category.id,
             name="Updated Category",
             description="This is an updated category",
-            is_activate=False
+            is_active=False
         )
         repository.update(updated_category)
 
@@ -81,7 +81,7 @@ class TestMemoryCategoryRepository:
         category = Category(
             name="Test Category",
             description="This is a test category",
-            is_activate=True
+            is_active=True
         )
         repository = InMemoryCategoryRepository(categories=[category])
 
@@ -89,7 +89,7 @@ class TestMemoryCategoryRepository:
             id=uuid.uuid4(),
             name="Non-existent Category",
             description="This category does not exist",
-            is_activate=False
+            is_active=False
         )
         repository.update(non_existent_category)
 
@@ -100,12 +100,12 @@ class TestMemoryCategoryRepository:
         category1 = Category(
             name="Category 1",
             description="First category",
-            is_activate=True
+            is_active=True
         )
         category2 = Category(
             name="Category 2",
             description="Second category",
-            is_activate=False
+            is_active=False
         )
         repository = InMemoryCategoryRepository(categories=[category1, category2])
 
