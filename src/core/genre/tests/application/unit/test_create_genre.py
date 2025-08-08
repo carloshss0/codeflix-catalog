@@ -1,0 +1,127 @@
+from unittest.mock import create_autospec
+import uuid
+import pytest
+
+from src.core.genre.domain.genre import Genre
+from src.core.category.application.category_repository import CategoryRepository
+from src.core.genre.application.create_genre import CreateGenre, CreateGenreInput
+from src.core.genre.application.exceptions import InvalidGenre, RelatedCategoriesNotFound
+from src.core.genre.domain.genre_repository import GenreRepository
+from django_project.category_app.models import Category
+
+@pytest.fixture
+def mock_genre_repository() -> GenreRepository:
+    return create_autospec(GenreRepository)
+
+@pytest.fixture
+def movie_category() -> Category:
+    return Category(name="Movie")
+
+@pytest.fixture
+def documentary_category() -> Category:
+    return Category(name="Documentary")
+
+@pytest.fixture
+def mock_category_repository_with_categories(movie_category, documentary_category):
+    repository = create_autospec(CategoryRepository)
+    repository.list.return_value = [movie_category, documentary_category]
+    return repository
+
+@pytest.fixture
+def mock_empty_category_repository() -> CategoryRepository:
+    repository = create_autospec(CategoryRepository)
+    repository.list.return_value = []
+    return repository
+
+class TestCreateGenre:
+    def test_when_category_do_not_exist_then_raise_related_categories_not_found(
+        self,
+        mock_empty_category_repository,
+        mock_genre_repository,
+
+    ):
+        use_case = CreateGenre(
+            repository = mock_genre_repository,
+            category_repository = mock_empty_category_repository
+        )
+
+        category_id = uuid.uuid4()
+
+        input = CreateGenreInput(name="Action", categories_ids = {category_id})
+
+        with pytest.raises(RelatedCategoriesNotFound):
+            use_case.execute(input)
+
+    def test_when_created_genre_is_invalid_then_raise_invalid_genre(
+        self,
+        movie_category,
+        mock_category_repository_with_categories,
+        mock_genre_repository
+    ):
+        use_case = CreateGenre(
+            repository = mock_genre_repository,
+            category_repository=mock_category_repository_with_categories,
+        )
+
+        input = CreateGenreInput(
+            name= "",
+            categories_ids={movie_category.id},
+        )
+
+        with pytest.raises(InvalidGenre, match="name cannot be empty"):
+            use_case.execute(input)
+
+    def test_when_created_genre_is_valid_and_categories_exist_then_save_genre(
+        self,
+        movie_category,
+        documentary_category,
+        mock_category_repository_with_categories,
+        mock_genre_repository
+    ):
+        use_case = CreateGenre(
+            repository= mock_genre_repository,
+            category_repository=mock_category_repository_with_categories,
+        )
+
+        input = CreateGenreInput(
+            name="Romance",
+            categories_ids={movie_category.id, documentary_category.id}
+        )
+        output = use_case.execute(input)
+
+        assert output is not None
+        assert isinstance(output.id, uuid.UUID)
+
+        mock_genre_repository.save.assert_called_once_with(
+            Genre(
+                id = output.id,
+                name= input.name,
+                categories = input.categories_ids,
+            )
+        )
+
+    def test_when_created_genre_is_valid_without_categories(
+        self,
+        mock_empty_category_repository,
+        mock_genre_repository
+    ):
+        use_case = CreateGenre(
+            repository= mock_genre_repository,
+            category_repository=mock_empty_category_repository,
+        )
+
+        input = CreateGenreInput(
+            name="Romance",
+        )
+        output = use_case.execute(input)
+
+        assert output is not None
+        assert isinstance(output.id, uuid.UUID)
+
+        mock_genre_repository.save.assert_called_once_with(
+            Genre(
+                id = output.id,
+                name= input.name,
+                categories = input.categories_ids,
+            )
+        )
