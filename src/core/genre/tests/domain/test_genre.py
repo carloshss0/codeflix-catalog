@@ -11,6 +11,10 @@ class TestGenre:
         with pytest.raises(ValueError, match="name cannot be empty"):
             Genre(name= "")
 
+    def test_non_boolean_is_active_must_raise_an_exception(self):
+        with pytest.raises(ValueError, match="is_active must be a boolean value"):
+            Genre(name="Action", is_active="yes")
+
     def test_name_must_have_less_than_255_characters(self):
         with pytest.raises(ValueError, match= "name must have less than 256 characters"):
             Genre("a"*256)

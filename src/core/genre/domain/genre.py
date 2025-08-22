@@ -18,6 +18,9 @@ class Genre:
         
         if not self.name:
             raise ValueError("name cannot be empty")
+        
+        if not isinstance(self.is_active, bool):
+            raise ValueError("is_active must be a boolean value")
     
     def __str__(self):
         return f"{self.id} - {self.name} - {self.is_active}"
