@@ -11,11 +11,11 @@ A python microservice for managing catalog, following clean architecture princip
 
 ## Features
 
-- Create categories.
-- Get categories.
-- Update categories.
-- Delete categories.
-- List categories.
+- Create (categories and genres).
+- Get (categories and genres).
+- Update (categories and genres).
+- Delete (categories and genres).
+- List (categories and genres).
 - In-memory repository for testing and development.
 - SQL lite repository for testing and development (Django ORM).
 - Separation of domain, application, and infrastructure layers.
