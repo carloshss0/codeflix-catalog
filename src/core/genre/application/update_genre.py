@@ -43,10 +43,10 @@ class UpdateGenre:
 
 
         if input.categories is not None:
-            categories_ids = {category.id for category in self.category_repository.list()}
-            if not input.categories.issubset(categories_ids):
+            categories = {category.id for category in self.category_repository.list()}
+            if not input.categories.issubset(categories):
                 raise RelatedCategoriesNotFound(
-                    f"Category id not found: {input.categories - categories_ids}"
+                    f"Category id not found: {input.categories - categories}"
                 )
             
             for category_id in genre.categories - input.categories:
