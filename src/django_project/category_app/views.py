@@ -13,12 +13,12 @@ from rest_framework.status import (
 from src.core.category.application.delete_category import DeleteCategory, DeleteCategoryInput
 from src.core.category.application.update_category import UpdateCategory, UpdateCategoryInput
 from src.core.category.application.create_category import CreateCategory, CreateCategoryInput
-from django_project.category_app.serializers import CreateCategoryRequestSerializer, CreateCategoryResponseSerializer, DeleteCategoryRequestSerializer, ListCategoryResponseSerializer, PatchCategoryRequestSerializer, RetrieveCategoryRequestSerializer, RetrieveCategoryResponseSerializer, UpdateCategoryRequestSerializer
+from src.django_project.category_app.serializers import CreateCategoryRequestSerializer, CreateCategoryResponseSerializer, DeleteCategoryRequestSerializer, ListCategoryResponseSerializer, PatchCategoryRequestSerializer, RetrieveCategoryRequestSerializer, RetrieveCategoryResponseSerializer, UpdateCategoryRequestSerializer
 from src.core.category.application.exceptions import CategoryNotFound
 from src.core.category.application.get_category import GetCategory, GetCategoryInput
 from src.core.category.application.list_category import ListCategory, ListCategoryInput
-from django_project.category_app.repository import DjangoORMCategoryRepository
-from django_project.category_app.models import Category as CategoryModel
+from src.django_project.category_app.repository import DjangoORMCategoryRepository
+from src.django_project.category_app.models import Category as CategoryModel
 # Create your views here.
 class CategoryViewSet(viewsets.ViewSet):
 

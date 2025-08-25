@@ -8,7 +8,7 @@ from src.core.genre.domain.genre import Genre
 from src.core.genre.application.create_genre import CreateGenre, CreateGenreInput
 from src.core.genre.application.exceptions import InvalidGenre, RelatedCategoriesNotFound
 from core.genre.domain.genre_repository import GenreRepository
-from django_project.category_app.models import Category
+from src.django_project.category_app.models import Category
 
 @pytest.fixture
 def mock_genre_repository() -> GenreRepository:
