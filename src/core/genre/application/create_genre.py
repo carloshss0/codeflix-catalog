@@ -8,7 +8,7 @@ from src.core.category.application.category_repository import CategoryRepository
 @dataclass
 class CreateGenreInput:
     name: str
-    categories_ids: set[UUID] = field(default_factory=set)
+    categories: set[UUID] = field(default_factory=set)
     is_active: bool = True
 
 @dataclass
@@ -21,17 +21,17 @@ class CreateGenre:
         self.category_repository = category_repository
 
     def execute(self, input: CreateGenreInput) -> CreateGenreOutput:
-        categories_ids = {category.id for category in self.category_repository.list()}
+        categories = {category.id for category in self.category_repository.list()}
 
-        if not input.categories_ids.issubset(categories_ids):
+        if not input.categories.issubset(categories):
             raise RelatedCategoriesNotFound(
-                f"Category id not found: {input.categories_ids - categories_ids}"
+                f"Category id not found: {input.categories - categories}"
             )
         
         try:
             genre = Genre(
                 name= input.name,
-                categories =  input.categories_ids,
+                categories =  input.categories,
                 is_active= input.is_active
             )
         except ValueError as e:
