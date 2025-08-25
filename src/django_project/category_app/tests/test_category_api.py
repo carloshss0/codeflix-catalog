@@ -2,7 +2,7 @@ import uuid
 import pytest
 from rest_framework.test import APIClient
 
-from core.category.domain.category import Category
+from src.core.category.domain.category import Category
 from src.django_project.category_app.repository import DjangoORMCategoryRepository
 # Create your tests here.
 
