@@ -19,7 +19,7 @@ A python microservice for managing catalog, following clean architecture princip
 - In-memory repository for testing and development.
 - SQL lite repository for testing and development (Django ORM).
 - Separation of domain, application, and infrastructure layers.
-- API endpoints: GET (specific category), GET (all), CREATE, PUT (update all fields), PATCH (update specifics fields), DELETE
+- API endpoints: GET (specific id), GET (all), CREATE, PUT (update all fields), PATCH (update specifics fields), DELETE
 
 ## Getting Started
 
