@@ -16,8 +16,8 @@ class TestCastMember:
             CastMember("a"*256, type= CastMemberType.DIRECTOR)
 
     def test_cast_member_must_be_created_with_id_as_uuid(self):
-        category = CastMember(name= "John Doe", type= CastMemberType.DIRECTOR)
-        assert isinstance(category.id, UUID)
+        cast_member = CastMember(name= "John Doe", type= CastMemberType.DIRECTOR)
+        assert isinstance(cast_member.id, UUID)
 
     def test_cast_member_raise_exception_when_type_is_invalid(self):
         with pytest.raises(ValueError, match= "type must be either 'DIRECTOR' or 'ACTOR'"):
@@ -64,6 +64,25 @@ class TestCastMember:
 
         string_str = f"<Cast Member {cast_member.id} - {cast_member.name} - {cast_member.type}"
         assert repr(cast_member) == string_str
+
+    
+    def test_update_cast_member(self):
+        cast_member = CastMember(
+            name="John Doe",
+            type=CastMemberType.DIRECTOR,
+        )
+        cast_member.update_cast_member(name="John Doe Updated", type=CastMemberType.ACTOR)
+
+        assert cast_member.name == "John Doe Updated"
+        assert cast_member.type == CastMemberType.ACTOR
+
+    def test_update_cast_member_with_invalid_name_must_raise_an_exception(self):
+        cast_member = CastMember(
+            name="John Doe",
+            type=CastMemberType.DIRECTOR,
+        )
+        with pytest.raises(ValueError, match="name cannot be empty"):
+            cast_member.update_cast_member(name="", type=CastMemberType.ACTOR)
 
 
 
